@@ -4,7 +4,7 @@ import { EquipmentTypeDto } from './dto/equipment-type.dto';
 import { BrandDto } from './dto/brand.dto';
 import { BadRequestException } from '@nestjs/common';
 import { EquipmentDto } from './dto/equipment.dto';
-import { UserEquipmentDto } from './dto/user-equipment.dto';
+import { OperatorEquipmentDto } from './dto/user-equipment.dto';
 
 @Injectable()
 export class EquipmentService {
@@ -66,18 +66,18 @@ export class EquipmentService {
     }
   }
 
-  async addUserEquipment(userEquipmentData: UserEquipmentDto) {
+  async addOperatorEquipment(userEquipmentData: OperatorEquipmentDto) {
     try {
-      return await this.equipmentRepository.addUserEquipment(userEquipmentData);
+      return await this.equipmentRepository.addOperatorEquipment(userEquipmentData);
     } catch (err) {
       Logger.error(err);
       throw new BadRequestException(err);
     }
   }
 
-  async deleteUserEquipment(userId: number, equipmentId: number) {
+  async deleteOperatorEquipment(userId: number, equipmentId: number) {
     try {
-      return await this.equipmentRepository.deleteUserEquipment(
+      return await this.equipmentRepository.deleteOperatorEquipment(
         userId,
         equipmentId,
       );
@@ -86,9 +86,9 @@ export class EquipmentService {
     }
   }
 
-  async getAllUserEquipments(userId: number): Promise<UserEquipmentDto[]> {
+  async getAllOperatorEquipments(userId: number): Promise<OperatorEquipmentDto[]> {
     try {
-      return await this.equipmentRepository.getAllUserEquipments(userId);
+      return await this.equipmentRepository.getAllOperatorEquipments(userId);
     } catch (err) {
       throw new BadRequestException(err);
     }

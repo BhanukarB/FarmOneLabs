@@ -31,9 +31,9 @@ export enum PermissionEnum {
   ADD_EQUIPMENT_TYPE = 'add_equipment_type',
   GET_ALL_EQUIPMENT_TYPES = 'get_all_equipment_types',
   DELETE_EQUIPMENT = 'delete_equipment',
-  ADD_USER_EQUIPMENT = 'add_user_equipment',
-  DELETE_USER_EQUIPMENT = 'delete_user_equipment',
-  GET_ALL_USER_EQUIPMENT = 'get_all_user_equipment',
+  ADD_OPERATOR_EQUIPMENT = 'add_operator_equipment',
+  DELETE_OPERATOR_EQUIPMENT = 'delete_operator_equipment',
+  GET_ALL_OPERATOR_EQUIPMENT = 'get_all_operator_equipment',
   ADD_BRAND = 'add_brand',
   GET_ALL_BRANDS = 'get_all_brands',
 

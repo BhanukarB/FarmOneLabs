@@ -1,7 +1,7 @@
 import { IsString, IsNumber, IsOptional, IsNotEmpty } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class UserEquipmentDto {
+export class OperatorEquipmentDto {
   @ApiProperty({
     description: 'The ID of the user equipment',
     example: 1,

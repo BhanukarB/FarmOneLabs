@@ -22,13 +22,13 @@ import {
   AddBrandAPI,
   AddEquipmentAPI,
   AddEquipmentTypeAPI,
-  AddUserEquipmentAPI,
+  AddOperatorEquipmentAPI,
   DeleteEquipmentAPI,
-  DeleteUserEquipmentAPI,
+  DeleteOperatorEquipmentAPI,
   GetAllBrandsAPI,
   GetAllEquipmentAPI,
   GetAllEquipmentTypeAPI,
-  GetAllUserEquipmentAPI,
+  GetAllOperatorEquipmentAPI,
   GetEquipmentByIdAPI,
   UpdateEquipmentAPI,
 } from 'src/utils/routes/equipment.route';
@@ -38,7 +38,7 @@ import { AuthGuard } from 'src/common/guards/auth.guard';
 import { PermissionsGuard } from 'src/common/guards/permissions.guard';
 import { EquipmentTypeDto } from './dto/equipment-type.dto';
 import { BrandDto } from './dto/brand.dto';
-import { UserEquipmentDto } from './dto/user-equipment.dto';
+import { OperatorEquipmentDto } from './dto/user-equipment.dto';
 
 @ApiTags('equipment')
 @ApiBearerAuth('JWT')
@@ -140,52 +140,52 @@ export class EquipmentController {
     return this.equipmentService.deleteEquipment(id);
   }
 
-  @Post(AddUserEquipmentAPI.path)
+  @Post(AddOperatorEquipmentAPI.path)
   @UseGuards(AuthGuard, PermissionsGuard)
-  @Permissions(...AddUserEquipmentAPI.permissions)
+  @Permissions(...AddOperatorEquipmentAPI.permissions)
   @ApiOperation({ summary: 'Add user equipment' })
   @ApiResponse({
     status: 200,
     description: 'User equipment successfully added',
-    type: UserEquipmentDto,
+    type: OperatorEquipmentDto,
   })
-  async addUserEquipment(@Req() req, @Body() data: UserEquipmentDto) {
+  async addOperatorEquipment(@Req() req, @Body() data: OperatorEquipmentDto) {
     const { uid } = req.user;
     data.user_id = uid;
-    return this.equipmentService.addUserEquipment(data);
+    return this.equipmentService.addOperatorEquipment(data);
   }
 
-  @Delete(DeleteUserEquipmentAPI.path)
+  @Delete(DeleteOperatorEquipmentAPI.path)
   @UseGuards(AuthGuard, PermissionsGuard)
-  @Permissions(...DeleteUserEquipmentAPI.permissions)
+  @Permissions(...DeleteOperatorEquipmentAPI.permissions)
   @ApiOperation({ summary: 'Delete user equipment' })
   @ApiResponse({
     status: 200,
     description: 'User equipment successfully deleted',
     type: EquipmentDto,
   })
-  async deleteUserEquipment(
+  async deleteOperatorEquipment(
     @Req() req,
     @Param('equipmentId', ParseIntPipe) equipmentId: number,
   ) {
     const { uid } = req.user;
     const userId = uid;
-    return this.equipmentService.deleteUserEquipment(userId, equipmentId);
+    return this.equipmentService.deleteOperatorEquipment(userId, equipmentId);
   }
 
-  @Get(GetAllUserEquipmentAPI.path)
+  @Get(GetAllOperatorEquipmentAPI.path)
   @UseGuards(AuthGuard, PermissionsGuard)
-  @Permissions(...GetAllUserEquipmentAPI.permissions)
+  @Permissions(...GetAllOperatorEquipmentAPI.permissions)
   @ApiOperation({ summary: 'Get all user equipment' })
   @ApiResponse({
     status: 200,
     description: 'Returns all user equipment',
     type: [EquipmentDto],
   })
-  async getAllUserEquipment(@Req() req): Promise<UserEquipmentDto[]> {
+  async getAllOperatorEquipment(@Req() req): Promise<OperatorEquipmentDto[]> {
     const { uid } = req.user;
     const userId = uid;
-    return this.equipmentService.getAllUserEquipments(userId);
+    return this.equipmentService.getAllOperatorEquipments(userId);
   }
 
   @Post(AddBrandAPI.path)

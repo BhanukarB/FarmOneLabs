@@ -93,7 +93,7 @@ export const DeleteEquipmentAPI = {
   sample: 'delete/1',
 };
 
-export const AddUserEquipmentAPI = {
+export const AddOperatorEquipmentAPI = {
   path: 'add/user-equipment',
   endpoint: [
     `${Service.EQUIPMENT_API_PREFIX}add/user-equipment`,
@@ -101,12 +101,12 @@ export const AddUserEquipmentAPI = {
   ],
   method: RequestMethod.POST,
   argument: '',
-  permissions: [PermissionEnum.ADD_USER_EQUIPMENT],
+  permissions: [PermissionEnum.ADD_OPERATOR_EQUIPMENT],
   service: Service.EQUIPMENT_SERVICE,
   sample: 'add/user-equipment',
 };
 
-export const DeleteUserEquipmentAPI = {
+export const DeleteOperatorEquipmentAPI = {
   path: 'delete/user-equipment',
   endpoint: [
     `${Service.EQUIPMENT_API_PREFIX}delete/user-equipment`,
@@ -114,12 +114,12 @@ export const DeleteUserEquipmentAPI = {
   ],
   method: RequestMethod.DELETE,
   argument: '',
-  permissions: [PermissionEnum.DELETE_USER_EQUIPMENT],
+  permissions: [PermissionEnum.DELETE_OPERATOR_EQUIPMENT],
   service: Service.EQUIPMENT_SERVICE,
   sample: 'delete/user-equipment',
 };
 
-export const GetAllUserEquipmentAPI = {
+export const GetAllOperatorEquipmentAPI = {
   path: 'all/user-equipment',
   endpoint: [
     `${Service.EQUIPMENT_API_PREFIX}all/user-equipment`,
@@ -127,7 +127,7 @@ export const GetAllUserEquipmentAPI = {
   ],
   method: RequestMethod.GET,
   argument: '',
-  permissions: [PermissionEnum.GET_ALL_USER_EQUIPMENT],
+  permissions: [PermissionEnum.GET_ALL_OPERATOR_EQUIPMENT],
   service: Service.EQUIPMENT_SERVICE,
   sample: 'all/user-equipment',
 };

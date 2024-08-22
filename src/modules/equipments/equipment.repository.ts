@@ -2,7 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import knexConnection from '../../db/connector/knex';
 import { BrandDto } from './dto/brand.dto';
 import { EquipmentTypeDto } from './dto/equipment-type.dto';
-import { UserEquipmentDto } from './dto/user-equipment.dto';
+import { OperatorEquipmentDto } from './dto/user-equipment.dto';
 import { EquipmentDto } from './dto/equipment.dto';
 
 @Injectable()
@@ -84,21 +84,21 @@ export class EquipmentRepository {
     }
   }
 
-  // UserEquipment-related methods
-  async addUserEquipment(userEquipmentData: UserEquipmentDto) {
+  // OperatorEquipment-related methods
+  async addOperatorEquipment(userEquipmentData: OperatorEquipmentDto) {
     try {
-      const [userEquipment] = await knexConnection('user_equipment')
+      const [operatorEquipment] = await knexConnection('operator_equipment')
         .insert(userEquipmentData)
         .returning('*');
-      return userEquipment;
+      return operatorEquipment;
     } catch (err) {
       throw new BadRequestException(err.message);
     }
   }
 
-  async deleteUserEquipment(userId: number, equipmentId: number) {
+  async deleteOperatorEquipment(userId: number, equipmentId: number) {
     try {
-      return await knexConnection('user_equipment')
+      return await knexConnection('operator_equipment')
         .where({
           user_id: userId,
           equipment_id: equipmentId,
@@ -109,9 +109,9 @@ export class EquipmentRepository {
     }
   }
 
-  async getAllUserEquipments(userId: number): Promise<UserEquipmentDto[]> {
+  async getAllOperatorEquipments(userId: number): Promise<OperatorEquipmentDto[]> {
     try {
-      const userEquipments = await knexConnection('user_equipment')
+      const userEquipments = await knexConnection('operator_equipment')
         .where({ user_id: userId })
         .select([
           'id',
@@ -125,7 +125,7 @@ export class EquipmentRepository {
           'equipment_details',
           'equipment_image',
         ])
-        .join('equipment', 'user_equipment.equipment_id', 'equipment.id')
+        .join('equipment', 'operator_equipment.equipment_id', 'equipment.id')
         .join('brand', 'equipment.brand_id', 'brand.id')
         .select('equipment.name', 'brand.name as brand_name');
 
