@@ -2,7 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import knexConnection from '../../db/connector/knex';
 import { BrandDto } from './dto/brand.dto';
 import { EquipmentTypeDto } from './dto/equipment-type.dto';
-import { OperatorEquipmentDto } from './dto/user-equipment.dto';
+import { OperatorEquipmentDto } from './dto/operator-equipment.dto';
 import { EquipmentDto } from './dto/equipment.dto';
 
 @Injectable()
@@ -67,7 +67,7 @@ export class EquipmentRepository {
     equipmentTypeData: EquipmentTypeDto,
   ): Promise<EquipmentTypeDto> {
     try {
-      const [equipmentType] = await knexConnection('equipment_type')
+      const [equipmentType] = await knexConnection('equipment_types')
         .insert(equipmentTypeData)
         .returning('*');
       return equipmentType;
@@ -78,7 +78,7 @@ export class EquipmentRepository {
 
   async getAllEquipmentTypes(): Promise<EquipmentTypeDto[]> {
     try {
-      return await knexConnection('equipment_type').select('*');
+      return await knexConnection('equipment_types').select('*');
     } catch (err) {
       throw new BadRequestException(err.message);
     }
@@ -125,9 +125,9 @@ export class EquipmentRepository {
           'equipment_details',
           'equipment_image',
         ])
-        .join('equipment', 'operator_equipment.equipment_id', 'equipment.id')
-        .join('brand', 'equipment.brand_id', 'brand.id')
-        .select('equipment.name', 'brand.name as brand_name');
+        .join('equipment as e', 'operator_equipment.equipment_id', 'equipment.e')
+        .join('brands as b', 'equipment.brand_id', 'b.id')
+        .select('e.name', 'b.name as brand_name');
 
       return userEquipments;
     } catch (err) {
@@ -138,7 +138,7 @@ export class EquipmentRepository {
   // Brand-related methods
   async addBrand(brandData: BrandDto): Promise<BrandDto> {
     try {
-      const [brand] = await knexConnection('brand')
+      const [brand] = await knexConnection('brands')
         .insert(brandData)
         .returning('*');
       return brand;
@@ -149,7 +149,7 @@ export class EquipmentRepository {
 
   async getAllBrands(): Promise<BrandDto[]> {
     try {
-      return await knexConnection('brand').select('*');
+      return await knexConnection('brands').select('*');
     } catch (err) {
       throw new BadRequestException(err.message);
     }

@@ -4,7 +4,7 @@ import { EquipmentTypeDto } from './dto/equipment-type.dto';
 import { BrandDto } from './dto/brand.dto';
 import { BadRequestException } from '@nestjs/common';
 import { EquipmentDto } from './dto/equipment.dto';
-import { OperatorEquipmentDto } from './dto/user-equipment.dto';
+import { OperatorEquipmentDto } from './dto/operator-equipment.dto';
 
 @Injectable()
 export class EquipmentService {
@@ -98,6 +98,7 @@ export class EquipmentService {
     try {
       return await this.equipmentRepository.addBrand(brandData);
     } catch (err) {
+      Logger.error(err);
       throw new BadRequestException(err);
     }
   }

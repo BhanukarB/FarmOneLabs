@@ -38,7 +38,7 @@ import { AuthGuard } from 'src/common/guards/auth.guard';
 import { PermissionsGuard } from 'src/common/guards/permissions.guard';
 import { EquipmentTypeDto } from './dto/equipment-type.dto';
 import { BrandDto } from './dto/brand.dto';
-import { OperatorEquipmentDto } from './dto/user-equipment.dto';
+import { OperatorEquipmentDto } from './dto/operator-equipment.dto';
 
 @ApiTags('equipment')
 @ApiBearerAuth('JWT')

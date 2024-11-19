@@ -81,4 +81,13 @@ export class OperatorEquipmentDto {
   @IsString()
   @IsOptional()
   equipment_image?: string;
+
+  @ApiProperty({
+    description: 'Hourly Rate of the equipment',
+    example: '500',
+    required: true,
+  })
+  @IsNumber()
+  @IsNotEmpty()
+  hourly_equipment_rate: number;
 }

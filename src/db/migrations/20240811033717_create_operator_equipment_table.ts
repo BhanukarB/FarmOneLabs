@@ -12,6 +12,8 @@ export async function up(knex: Knex): Promise<void> {
     table.string('district', 255).notNullable();
     table.text('equipment_details').notNullable();
     table.text('equipment_image').notNullable();
+    table.integer('current_hourly_rate').notNullable().defaultTo(0);
+    table.integer('deleted').defaultTo(0);
   });
 }
 
