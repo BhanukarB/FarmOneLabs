@@ -1,9 +1,11 @@
 # compiled output
-/dist
-/node_modules
+dist
+node_modules
 
 #
-.env
+.env*
+.next
+package-lock.json
 
 # Logs
 logs
@@ -22,7 +24,7 @@ lerna-debug.log*
 /.nyc_output
 
 # IDEs and editors
-/.idea
+.idea
 .project
 .classpath
 .c9/
