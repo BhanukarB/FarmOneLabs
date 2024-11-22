@@ -17,6 +17,7 @@ const Login = () => {
       setError(null);
       router.push("/"); // Redirect to homepage or dashboard
     } catch (err) {
+      console.log(err)
       setError("Login failed. Please check your credentials.");
     }
   };

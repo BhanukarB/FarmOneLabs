@@ -13,6 +13,13 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
 
+  // Enable CORS
+  app.enableCors({
+    origin: process.env.WEB_BASE_URL,
+    allowedHeaders: 'Content-Type, Accept, Authorization',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  });
+
   const options = new DocumentBuilder()
     .setTitle('Your API Title')
     .setDescription('API description')
@@ -32,3 +39,4 @@ async function bootstrap() {
 }
 
 bootstrap();
+
